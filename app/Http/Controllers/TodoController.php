@@ -69,9 +69,20 @@ class TodoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Todo $todo)
+    public function update(Request $request, Todo $todo): RedirectResponse
     {
+        //Die and Dump this is to test the request from Frontend
+        // dd($todo);
         //
+        $this->authorize('update', $todo);
+
+        $validated = $request->validate([
+            'message' => 'required|string|max:255',
+        ]);
+
+        $todo->update($validated);
+
+        return redirect(route('todos.index'));
     }
 
     /**
