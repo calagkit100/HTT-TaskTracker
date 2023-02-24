@@ -16,11 +16,14 @@ class TodoController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function index(): Response
     public function index(): Response
     {
         //
+        // return response('Hello, World!');
         return Inertia::render('Todos/Index', [
             //
+            'todos' => Todo::with('user:id,name')->latest()->get(),
         ]);
     }
 

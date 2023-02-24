@@ -33,13 +33,13 @@ export default function Index({ auth, todos }) {
                     >
                     </textarea>
                     <InputError message={errors.message} className="mt-2" />
-                    <PrimaryButton className="mt-4" processing={processing}>Add Todo</PrimaryButton>
+                    <PrimaryButton className="mt-4" processing={processing.toString(processing)}>Add Todo</PrimaryButton>
                 </form>
 
                 <div className="mt-6 bg-white shadow-sm rounded-lg divide-y">
-                    {todos.map((todo) => {
+                    {todos && Array.isArray(todos) && todos.map((todo) => (
                         <Todo key={todo.id} todo={todo} />
-                    })}
+                    ))}
                 </div>
             </div>
         </AuthenticatedLayout>
