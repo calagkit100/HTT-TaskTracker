@@ -40,6 +40,7 @@ class TodoController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // dd($request);
         //
         $validated = $request->validate([
             'message' => 'required|string|max:255',
@@ -88,8 +89,15 @@ class TodoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Todo $todo)
+    public function destroy(Todo $todo): RedirectResponse
+
     {
+        // dd($todo);
         //
+        $this->authorize('delete', $todo);
+
+        $todo->delete();
+
+        return redirect(route('todos.index'));
     }
 }

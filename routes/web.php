@@ -31,9 +31,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('todos', TodoController::class)
-    // ->only(['index', 'store'])
-    ->only(['index', 'store', 'update'])
-    ->middleware(['auth', 'verified']);
+    // ->only(['index', 'store'])  //get //post
+    // ->only(['index', 'store', 'update']) //get //post //update
+    ->only(['index', 'store', 'update', 'destroy']) //get //post //update //delete
+    ->middleware(['auth', 'verified']); //middleware for auth and verified
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
