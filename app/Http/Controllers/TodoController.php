@@ -72,14 +72,17 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo): RedirectResponse
     {
-        //Die and Dump this is to test the request from Frontend
-        // dd($todo);
-        //
         $this->authorize('update', $todo);
 
         $validated = $request->validate([
             'message' => 'required|string|max:255',
+            'done' => 'boolean',
         ]);
+
+        if ($todo->message == $request->message) {
+            $validated['done'] = !$request->done;
+        }
+
 
         $todo->update($validated);
 

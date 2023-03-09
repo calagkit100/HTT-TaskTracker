@@ -38,9 +38,10 @@ export default function Login({ status, canResetPassword }) {
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="email" value="Email" className='text-teal-500' />
 
                     <TextInput
+                        placeholder="Email"
                         id="email"
                         type="email"
                         name="email"
@@ -55,9 +56,10 @@ export default function Login({ status, canResetPassword }) {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <InputLabel htmlFor="password" value="Password" className='text-teal-500' />
 
                     <TextInput
+                        placeholder="Password"
                         id="password"
                         type="password"
                         name="password"
@@ -72,22 +74,30 @@ export default function Login({ status, canResetPassword }) {
 
                 <div className="block mt-4">
                     <label className="flex items-center">
-                        <Checkbox name="remember" value={data.remember} onChange={handleOnChange} />
-                        <span className="ml-2 text-sm text-gray-600">Remember me</span>
+                        <Checkbox className='text-teal-500' name="remember" value={data.remember} onChange={handleOnChange} />
+                        <span className="ml-2 text-sm text-white">Remember me</span>
                     </label>
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
+                <div className="flex items-center flex-col gap-1 justify-end mt-4">
+                    <Link
+                        href={route('register')}
+                        className="text-sm underline text-teal-500"
+                    >
+                        Don't have account?
+                    </Link>
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            className="text-sm underline text-teal-500"
                         >
                             Forgot your password?
                         </Link>
+
                     )}
 
-                    <PrimaryButton className="ml-4" disabled={processing}>
+
+                    <PrimaryButton className="ml-4 mt-2" disabled={processing}>
                         Log in
                     </PrimaryButton>
                 </div>
