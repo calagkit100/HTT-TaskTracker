@@ -14,6 +14,7 @@ class Todo extends Model
 
     protected $fillable = [
         'message',
+        'done',
     ];
 
     public function user(): BelongsTo

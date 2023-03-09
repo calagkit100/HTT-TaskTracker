@@ -26,9 +26,14 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/todos', function () {
+    return Inertia::render('Index');
+})->middleware(['auth', 'verified'])->name('todos');
+
+
+// Route::get('/todos', function () {
+//     return Inertia::render('Index');
+// })->middleware(['auth', 'verified'])->name('todos');
 
 Route::resource('todos', TodoController::class)
     // ->only(['index', 'store'])  //get //post
